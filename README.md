@@ -1,61 +1,197 @@
-# pwa-prototype
-This is a flashcard website that allows users to make their own studysets or explore others, it was built using HTML, CSS and Materialize CSS. 
-The current version is a prototype only. To preivew the website, please git clone my repository and run the index.html using Live Server extension on Visual Studio Code.
+# Flashly
 
-Integration of Firebase and IndexedDB in the Application:
-The application integrates Firebase (for cloud storage) and IndexedDB (for local storage) to handle data efficiently in both online and offline modes. Below is an explanation of how these two technologies are used and the flow of data storage and synchronization.
+An interactive flashcard application that helps users study and memorize information efficiently. Flashly is built as a Progressive Web App (PWA) using modern web technologies like Firebase, IndexedDB, and Materialize CSS.
 
-1. Firebase Integration:
-Firebase Setup: Firebase is initialized with the Firebase configuration in the firebaseDB.js file. We use Firestore (Firebase's NoSQL database) to store metadata of the studysets (title, status, etc.) and Firebase Storage to store images.
+## Table of Contents
 
-Firebase handles data synchronization when the device is online, allowing users to save their studysets to the cloud in real-time. Firebase ensures that all the changes made to studysets are updated across all devices connected to the Firebase project.
+- [Features](#features)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-Adding Data to Firebase: When the user adds a new studyset or edits an existing one, the metadata is saved to Firebase's Firestore, while images (if any) are uploaded to Firebase Storage. The Firebase addStudysetToFirebase function handles the creation of new documents in Firestore, storing metadata like the studyset title and status.
+## Features
 
-Synchronizing Data: When a studyset is added or updated in Firebase, the Firebase ID is returned and used to update the local IndexedDB. This ensures consistency between Firebase and IndexedDB, where the same studyset ID is used to refer to the same studyset in both storages.
+- **User Authentication**: Secure sign-in and sign-out using Firebase Authentication.
+- **Study Sets**: Create, edit, and delete study sets to organize your flashcards.
+- **Flashcards**: Add, edit, and delete flashcards within each study set.
+- **Offline Support**: Access your study sets and flashcards even when offline using IndexedDB.
+- **Real-time Sync**: Automatically syncs data with Firebase Firestore when back online.
+- **Responsive Design**: Mobile-friendly interface using Materialize CSS framework.
+- **Notifications**: Receive push notifications for study reminders (requires permission).
+- **Progressive Web App**: Installable on devices and supports service workers for caching.
 
-2. IndexedDB Integration:
-IndexedDB Setup: IndexedDB is used as local storage for the application. The createDB function sets up the IndexedDB with an object store named studysets. Each studyset has an auto-incremented ID (local) and a Firebase ID (cloud), along with metadata and image data (stored as Data URLs).
+## Demo
 
-Storing Data in IndexedDB: When data is added in offline mode (when Firebase is not reachable), studysets are stored in IndexedDB with a unique studysetId. The image data is stored as a Data URL to minimize size. Once the user goes online, the app syncs data to Firebase.
+[Link to live demo (if available)](https://your-live-demo-link.com)
 
-CRUD Operations with IndexedDB:
+## Installation
 
-Create: The addStudyset function adds studysets to IndexedDB.
-Read: The loadStudysets function fetches all studysets from IndexedDB to display them on the UI.
-Update: The editStudyset function updates the studyset in IndexedDB, reflecting changes made when editing the studyset.
-Delete: The deleteStudyset function removes studysets from IndexedDB when deleted.
-3. CRUD Operations in Online and Offline Modes:
-Offline Mode:
-When the device is offline, the user can still create, update, and delete studysets. All changes are saved to IndexedDB, and the app marks them as unsynced (synced: false).
+### Prerequisites
 
-Adding a Studyset:
+- Node.js and npm installed
+- Firebase project set up
 
-The addStudyset function will convert the image to a Data URL and store it in IndexedDB. The studyset's metadata is saved locally with a temporary ID.
-The status is marked as pending to indicate it needs to be synced when the user goes online.
-Updating a Studyset:
+### Steps
 
-The editStudyset function modifies the studyset in IndexedDB. If the user updates an image, the image will be re-converted to a Data URL and stored in IndexedDB.
-Deleting a Studyset:
+1. **Clone the Repository**
 
-The deleteStudyset function removes the studyset from IndexedDB. If the user is online, it will also be deleted from Firebase.
-Online Mode:
-When the device is online, the app syncs data to Firebase. The app checks if the studyset is synced, and if not, it uploads the data to Firebase and updates the studyset with the Firebase ID.
+   ```bash
+   git clone https://github.com/your-username/flashly.git
+   cd flashly
+   ```
 
-Adding a Studyset:
+2. **Install Dependencies**
 
-If online, the metadata is added to Firebase, and the image is uploaded to Firebase Storage. Once the data is successfully stored in Firebase, the Firebase ID is retrieved and used to update IndexedDB.
-Updating a Studyset:
+   ```bash
+   npm install
+   ```
 
-If the studyset is edited, it is updated both in IndexedDB and Firebase. If the user is offline, the changes are stored locally and marked as unsynced. When the user goes online, the changes are uploaded to Firebase.
-Synchronizing Data:
+3. **Set Up Firebase**
 
-The syncStudysets function is responsible for syncing unsynced studysets. It runs periodically or when the app detects that the device has gone online. It looks for any studysets in IndexedDB marked as unsynced and uploads them to Firebase, replacing their temporary ID with the Firebase ID.
-Firebase ID Management:
-Firebase IDs are assigned to studysets when they are added to Firebase for the first time.
-When a studyset is added in offline mode, a temporary ID (temp-ID) is used. Once the studyset is synced to Firebase, the temp-ID is replaced by the Firebase document ID.
-Synced Flag: The synced flag in IndexedDB ensures the studyset is marked as synced once it has been uploaded to Firebase.
-4. Synchronization Process:
-When the user is offline, studysets are stored with a temp-ID in IndexedDB and marked as synced: false.
-When the user is back online, the syncStudysets function checks all studysets marked as synced: false and uploads them to Firebase.
-After a studyset is uploaded to Firebase, its temporary ID is replaced with the Firebase document ID, and the synced flag is updated to true.
+   - Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/).
+   - Enable Authentication (Email/Password) and Firestore Database.
+   - Set up Firebase Cloud Messaging if you want to use notifications.
+   - Copy your Firebase project's configuration.
+
+4. **Configure the Project**
+
+   - Create a `firebaseConfig.js` file in the `js` directory:
+
+     ```javascript
+     // firebaseConfig.js
+     export const firebaseConfig = {
+       apiKey: "YOUR_API_KEY",
+       authDomain: "YOUR_AUTH_DOMAIN",
+       projectId: "YOUR_PROJECT_ID",
+       storageBucket: "YOUR_STORAGE_BUCKET",
+       messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+       appId: "YOUR_APP_ID",
+     };
+     ```
+
+   - Replace the placeholders with your Firebase project's configuration.
+
+5. **Serve the Application**
+
+   You can use a local development server like `http-server`:
+
+   ```bash
+   npm install -g http-server
+   http-server -c-1
+   ```
+
+   - The `-c-1` option disables caching.
+   - Open your browser and navigate to `http://localhost:8080`.
+
+## Usage
+
+- **Sign Up/In**: Create a new account or sign in with your existing credentials.
+- **Create Study Sets**: Click on the "Add" button to create a new study set.
+- **Add Flashcards**: Within a study set, add flashcards by providing a question and an answer.
+- **Edit/Delete**: Use the edit and delete buttons to manage your study sets and flashcards.
+- **Study Offline**: The app works offline. Any changes made will sync when you're back online.
+- **Enable Notifications**: Grant permission to receive study reminders via notifications.
+
+## Technologies Used
+
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Frameworks**: Materialize CSS
+- **Backend**: Firebase Authentication, Firestore Database, Firebase Cloud Messaging
+- **Offline Storage**: IndexedDB (via `idb` library)
+- **PWA Features**: Service Workers, Web Manifest
+
+## Project Structure
+
+```
+flashly/
+├── css/
+│   ├── materialize.min.css
+│   └── styles.css
+├── img/
+│   └── ... (images and icons)
+├── js/
+│   ├── firebaseConfig.js
+│   ├── firebaseDB.js
+│   ├── flashcards.js
+│   ├── ui.js
+│   └── materialize.min.js
+├── index.html
+├── flashcard.html
+├── serviceworker.js
+├── manifest.json
+└── README.md
+```
+
+- **css/**: Stylesheets for the application.
+- **img/**: Images and icons used in the app.
+- **js/**: JavaScript files, including Firebase configuration and application logic.
+- **index.html**: The main landing page of the application.
+- **flashcard.html**: Page for managing flashcards within a study set.
+- **serviceworker.js**: Service worker script for caching and offline support.
+- **manifest.json**: Web App Manifest file for PWA features.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. **Fork the Repository**
+
+   Click on the "Fork" button at the top right of this page.
+
+2. **Clone Your Fork**
+
+   ```bash
+   git clone https://github.com/your-username/flashly.git
+   cd flashly
+   ```
+
+3. **Create a New Branch**
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+4. **Make Changes**
+
+   - Implement your feature or fix.
+   - Ensure the code adheres to the project's coding standards.
+
+5. **Commit Changes**
+
+   ```bash
+   git commit -m "Add your commit message"
+   ```
+
+6. **Push to Your Fork**
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+7. **Submit a Pull Request**
+
+   - Go to the original repository.
+   - Click on "Pull Requests" and then "New Pull Request".
+   - Select your branch and submit the PR.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- [Firebase](https://firebase.google.com/) for backend services.
+- [Materialize CSS](https://materializecss.com/) for the UI framework.
+- [idb](https://github.com/jakearchibald/idb) library for IndexedDB Promised-based API.
+- Icons made by [Freepik](https://www.freepik.com) from [Flaticon](https://www.flaticon.com/).
+
+---
+
+Please replace placeholder URLs and texts (like `https://your-live-demo-link.com`, `your-username`, etc.) with your actual information.
+
+Let me know if you need further assistance!

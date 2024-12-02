@@ -1,0 +1,113 @@
+<!-- flashcard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashly: Study</title>
+  <!-- Import Google Icon Font -->
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <!-- Import Materialize CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body class="grey lighten-3">
+  <header>
+    <nav class="z-depth-0 grey lighten-3">
+      <div class="nav-wrapper container">
+        <a
+          href="/"
+          aria-label="Flashly Home Page"
+          class="brand-logo left red-text text-darken-2"
+        >
+          Flashly
+        </a>
+        <ul class="center-ul hide-on-med-and-down">
+          <li>
+            <a href="/index.html" class="red-text text-darken-2">Home</a>
+          </li>
+          <li>
+            <a href="study.html" class="red-text text-darken-2">Study</a>
+          </li>
+          <li>
+            <a href="explore.html" class="red-text text-darken-2">Explore</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Replace 'actualStudysetId' with the real studyset ID -->
+      <h4 id="studyset-title" data-id="actualStudysetId">Actual Studyset Title</h4>
+      <div class="carousel carousel-slider" id="flashcard-carousel"></div>
+
+      <div class="row">
+        <form id="add-flashcard-form" class="col s12">
+          <div class="input-field">
+            <input
+              type="text"
+              id="question-input"
+              placeholder="Enter question"
+              required
+            />
+            <label for="question-input">Question</label>
+          </div>
+          <div class="input-field">
+            <input
+              type="text"
+              id="answer-input"
+              placeholder="Enter answer"
+              required
+            />
+            <label for="answer-input">Answer</label>
+          </div>
+          <button id="add-flashcard-button" type="submit" class="btn red darken-2">Add Flashcard</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Flashcard Modal -->
+    <div id="edit-flashcard-modal" class="modal">
+      <div class="modal-content">
+        <h4>Edit Flashcard</h4>
+        <form id="edit-flashcard-form">
+          <div class="input-field">
+            <input
+              type="text"
+              id="edit-question-input"
+              placeholder="Edit question"
+              required
+            />
+            <label for="edit-question-input">Question</label>
+          </div>
+          <div class="input-field">
+            <input
+              type="text"
+              id="edit-answer-input"
+              placeholder="Edit answer"
+              required
+            />
+            <label for="edit-answer-input">Answer</label>
+          </div>
+          <input type="hidden" id="edit-flashcard-id" />
+          <button type="submit" class="btn amber">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/js/materialize.min.js"></script>
+  <script type="module" src="/js/ui.js"></script>
+  <script type="module" src="/js/firebaseDB.js"></script>
+  <script type="module" src="/js/flashcards.js"></script>
+</body>
+</html>

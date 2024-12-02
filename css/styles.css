@@ -1,0 +1,83 @@
+.center-ul {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.center-ul li {
+    display: inline-block;
+}
+
+.center-ul a {
+    position: relative; /* Add this to make the pseudo-element relative to the link */
+    background-color: transparent !important;
+    padding: 0 10px; /* Optional: Add some padding to space out the links */
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.center-ul a:hover {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.center-ul a::before {
+    content: '';
+    background: #d32f2f;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: width 0.3s ease-in-out;
+}
+
+.center-ul a:hover::before {
+    width: 100%;
+}
+
+#hero-btn {
+    border-radius: 10px;
+}
+
+.valign-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.valign-wrapper h1, .valign-wrapper button {
+    margin: 20px 0; 
+}
+
+.card {
+    cursor: pointer;
+}
+
+.card-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.card-image img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+}
+
+.custom-card-height {
+    height: 400px; 
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-content {
+    height: 100%;
+    cursor: pointer;
+}
+  
+  

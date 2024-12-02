@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashly: Study</title>
+    <!-- Import Google Icon Font -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="/css/materialize.min.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body class="grey lighten-3">
+    <header>
+      <!-- Navbar for Bigger Screens -->
+      <nav class="z-depth-0 grey lighten-3">
+        <div class="nav-wrapper container">
+          <a
+            href="/"
+            aria-label="Flashly Home Page"
+            class="brand-logo left red-text text-darken-2"
+          >
+            Flashly
+          </a>
+          <!-- Hamburger Menu for medium and small screens -->
+          <a
+            href="#"
+            data-target="mobile-menu"
+            class="sidenav-trigger right hide-on-med-and-up red-text text-darken-2"
+            aria-label="Open side menu"
+          >
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="center-ul hide-on-med-and-down">
+            <li>
+              <a href="/" class="red-text text-darken-2">Home</a>
+            </li>
+            <li>
+              <a href="study.html" class="red-text text-darken-2">Study</a>
+            </li>
+            <li>
+              <a href="explore.html" class="red-text text-darken-2">Explore</a>
+            </li>
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a class="waves-effect waves-red btn red darken-2" id="logout-btn" style="display: none;"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <aside>
+      <!-- Sidenav for small and medium screens -->
+      <ul class="sidenav" id="mobile-menu">
+        <li><a class="subheader black-text center">MENU</a></li>
+        <li>
+          <a href="/" class="waves-effect red-text text-darken-2">
+            <i class="material-icons">home</i>Home</a
+          >
+        </li>
+        <li><div class="divider"></div></li>
+        <li>
+          <a
+            href="study.html"
+            class="waves-effect red-text text-darken-2"
+          >
+            <i class="material-icons">menu_book </i>Study</a
+          >
+        </li>
+        <li><div class="divider"></div></li>
+        <li>
+          <a
+            href="explore.html"
+            class="waves-effect red-text text-darken-2"
+          >
+            <i class="material-icons">search</i>Explore</a
+          >
+        </li>
+        <ul>
+          <li>
+            <a class="waves-effect waves-red btn red darken-2" id="logout-btn" style="display: none;"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </ul>
+    </aside>
+
+    <main>
+      <div class="container section">
+        <div class="row valign-wrapper">
+          <div class="col s12 m6">
+            <h1>My StudySets</h1>
+          </div>
+          <div class="col s12 m6 right-align">
+            <a
+              class="waves-effect waves-light red darken-2 btn modal-trigger add-btn"
+              href="#modal1"
+            >
+              Add New <i class="material-icons right">add</i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="row studysets">
+          <!-- First Card -->
+          <!-- <div class="col s12 m4">
+            <a href="flashcard.html">
+              <div class="card hoverable">
+                <div class="card-image responsive-img">
+                  <img src="/img/inf-654.jpg" />
+                </div>
+                <div class="card-content">
+                  <span class="card-title">INF 654</span>
+                </div>
+                <div class="card-action">
+                  <a href="#" class="amber-text edit-link"
+                    >Edit
+                    <i class="material-icons left">edit</i>
+                  </a>
+                  <a href="#" class="red-text text-darken-2"
+                    >Delete
+                    <i class="material-icons left">delete</i>
+                  </a>
+                </div>
+              </div>
+            </a>
+          </div> -->
+
+          <!-- Second Card -->
+          <!-- <div class="col s12 m4">
+            <a href="flashcard.html">
+              <div class="card hoverable">
+                <div class="card-image responsive-img">
+                  <img src="/img/inf-360.png" />
+                </div>
+                <div class="card-content">
+                  <span class="card-title">INF 360</span>
+                </div>
+                <div class="card-action">
+                  <a href="#" class="amber-text edit-link"
+                    >Edit
+                    <i class="material-icons left">edit</i>
+                  </a>
+                  <a href="#" class="red-text text-darken-2"
+                    >Delete
+                    <i class="material-icons left">delete</i>
+                  </a>
+                </div>
+              </div>
+            </a>
+          </div> -->
+
+          <!-- Third Card -->
+          <!-- <div class="col s12 m4">
+            <a href="flashcard.html">
+              <div class="card hoverable">
+                <div class="card-image responsive-img">
+                  <img src="/img/csci-331.jpg" />
+                </div>
+                <div class="card-content">
+                  <span class="card-title">CSCI 331</span>
+                </div>
+                <div class="card-action">
+                  <a href="#" class="amber-text edit-link"
+                    >Edit
+                    <i class="material-icons left">edit</i>
+                  </a>
+                  <a href="#" class="red-text text-darken-2"
+                    >Delete
+                    <i class="material-icons left">delete</i>
+                  </a>
+                </div>
+              </div>
+            </a>
+          </div> -->
+
+          <!-- Fourth Card -->
+          <!-- <div class="col s12 m4">
+            <a href="flashcard.html">
+              <div class="card hoverable">
+                <div class="card-image responsive-img">
+                  <img src="/img/inf-652.jpg" />
+                </div>
+                <div class="card-content">
+                  <span class="card-title">INF 652</span>
+                </div>
+                <div class="card-action">
+                  <a href="#" class="amber-text edit-link"
+                    >Edit
+                    <i class="material-icons left">edit</i>
+                  </a>
+                  <a href="#" class="red-text text-darken-2"
+                    >Delete
+                    <i class="material-icons left">delete</i>
+                  </a>
+                </div>
+              </div>
+            </a>
+          </div> -->
+
+          <!-- Fifth Card -->
+          <!-- <div class="col s12 m4">
+            <a href="flashcard.html">
+              <div class="card hoverable">
+                <div class="card-image responsive-img">
+                  <img src="/img/csci-663.webp" />
+                </div>
+                <div class="card-content">
+                  <span class="card-title">CSCI 663</span>
+                </div>
+                <div class="card-action">
+                  <a href="#" class="amber-text edit-link"
+                    >Edit
+                    <i class="material-icons left">edit</i>
+                  </a>
+                  <a href="#" class="red-text text-darken-2"
+                    >Delete
+                    <i class="material-icons left">delete</i>
+                  </a>
+                </div>
+              </div>
+            </a>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>New StudySet</h4>
+          <form id="new-studyset-form">
+            <div class="input-field">
+              <label for="subject-name">Subject Name</label>
+              <input type="text" id="subject-name" required />
+            </div>
+            <div class="input-field">
+              <label for="background-image">Background Image</label>
+              <input
+                type="file"
+                id="background-image"
+                accept="image/*"
+                title="Choose a background image for the studyset"
+                required
+              />
+            </div>            
+            <input type="hidden" id="studyset-id">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a
+            href="#!"
+            class="modal-close waves-effect waves-green btn"
+            id="submit-button"
+            >Submit</a
+          >
+        </div>
+      </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/js/materialize.min.js"></script>
+    <script type="module" src="/js/ui.js"></script>
+    <script type="module" src="/js/firebaseDB.js"></script>
+    <script type="module" src="/js/auth.js"></script>
+  </body>
+</html>
