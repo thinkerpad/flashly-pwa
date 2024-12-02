@@ -27,7 +27,7 @@ An interactive flashcard application that helps users study and memorize informa
 
 ## Demo
 
-[Link to live demo (if available)](https://flashly-30428.web.app)
+[Link to live demo](https://flashly-30428.web.app)
 
 ## Installation
 
